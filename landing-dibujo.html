@@ -1,0 +1,1608 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galletas del Duende | Repostería Artesanal Navideña</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --ginger:    #8B4513;
+      --ginger-lt: #C1712A;
+      --ginger-dk: #5C2E08;
+      --cream:     #FFF8EE;
+      --icing:     #F0EAE0;
+      --green:     #2E7D32;
+      --green-lt:  #4CAF50;
+      --red:       #C62828;
+      --red-lt:    #EF5350;
+      --purple:    #6A1B9A;
+      --purple-lt: #AB47BC;
+      --snow:      #ECEFF1;
+      --charcoal:  #2C1A0E;
+      --text:      #3E2008;
+      --muted:     #8D6E63;
+      --radius:    18px;
+      --shadow:    0 8px 32px rgba(92,46,8,.18);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SNOWFLAKES BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(255,255,255,.6) 1px, transparent 1px),
+        radial-gradient(circle at 40% 25%, rgba(255,255,255,.5) 2px, transparent 2px),
+        radial-gradient(circle at 70% 8%,  rgba(255,255,255,.4) 1px, transparent 1px),
+        radial-gradient(circle at 90% 20%, rgba(255,255,255,.6) 2px, transparent 2px),
+        radial-gradient(circle at 5%  50%, rgba(255,255,255,.3) 1px, transparent 1px),
+        radial-gradient(circle at 85% 60%, rgba(255,255,255,.4) 2px, transparent 2px),
+        radial-gradient(circle at 55% 80%, rgba(255,255,255,.5) 1px, transparent 1px),
+        radial-gradient(circle at 25% 90%, rgba(255,255,255,.4) 2px, transparent 2px);
+      background-size: 300px 300px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .6;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--ginger-dk);
+      box-shadow: 0 4px 20px rgba(0,0,0,.35);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: .9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .nav-logo {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.5rem;
+      color: var(--cream);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .nav-logo span.cookie-icon {
+      font-size: 1.6rem;
+      animation: wobble 3s ease-in-out infinite;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--icing);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: .9rem;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      transition: color .25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--red-lt);
+      border-radius: 2px;
+      transition: width .3s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--red);
+      color: #fff !important;
+      padding: .45rem 1.1rem;
+      border-radius: 50px;
+      transition: background .25s, transform .2s !important;
+    }
+
+    .nav-cta:hover { background: var(--red-lt) !important; transform: scale(1.06); }
+    .nav-cta::after { display: none !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      width: 26px; height: 3px;
+      background: var(--cream);
+      border-radius: 3px;
+      transition: all .3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(160deg, var(--ginger-dk) 0%, var(--ginger) 55%, var(--ginger-lt) 100%);
+      overflow: hidden;
+    }
+
+    .hero-bg-circles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-bg-circles span {
+      position: absolute;
+      border-radius: 50%;
+      opacity: .12;
+      background: var(--cream);
+    }
+
+    .hero-bg-circles span:nth-child(1) { width: 500px; height: 500px; top: -120px; right: -100px; animation: floatY 8s ease-in-out infinite; }
+    .hero-bg-circles span:nth-child(2) { width: 300px; height: 300px; bottom: -60px; left: -80px; animation: floatY 6s ease-in-out infinite reverse; }
+    .hero-bg-circles span:nth-child(3) { width: 180px; height: 180px; top: 30%; left: 55%; opacity: .08; animation: floatY 10s ease-in-out infinite 2s; }
+
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text { color: var(--cream); }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(255,255,255,.15);
+      border: 1px solid rgba(255,255,255,.25);
+      backdrop-filter: blur(6px);
+      padding: .35rem .85rem;
+      border-radius: 50px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #ffe0b2;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+
+    .hero-title .accent { color: #FFD54F; }
+
+    .hero-desc {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      line-height: 1.75;
+      color: #ffe0c8;
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--red);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      padding: .85rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(198,40,40,.45);
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .btn-primary:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 10px 32px rgba(198,40,40,.55); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: transparent;
+      color: var(--cream);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: .85rem 1.5rem;
+      border-radius: 50px;
+      border: 2px solid rgba(255,255,255,.4);
+      text-decoration: none;
+      transition: background .25s, border-color .25s;
+    }
+
+    .btn-ghost:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.7); }
+
+    /* Gingerbread SVG illustration */
+    .hero-illustration {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: floatY 4s ease-in-out infinite;
+    }
+
+    .hero-illustration svg {
+      width: clamp(240px, 38vw, 420px);
+      filter: drop-shadow(0 20px 48px rgba(0,0,0,.4));
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-strip {
+      background: var(--ginger-dk);
+      color: var(--cream);
+      padding: 1.5rem 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .stat-item strong {
+      display: block;
+      font-family: 'Pacifico', cursive;
+      font-size: 2rem;
+      color: #FFD54F;
+    }
+
+    .stat-item span { font-size: .85rem; opacity: .8; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ── SECTIONS SHARED ── */
+    section { position: relative; z-index: 1; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      color: var(--green);
+      font-weight: 800;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .6rem;
+    }
+
+    .section-title {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: var(--ginger-dk);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-family: 'Lora', serif;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 6rem 1.5rem;
+      background: var(--cream);
+    }
+
+    .about-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .about-image .img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #D7A87A 0%, #A0522D 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      color: rgba(255,255,255,.7);
+      font-size: 3.5rem;
+      gap: .5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .about-image .img-placeholder p {
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .about-deco {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 100px; height: 100px;
+      background: var(--red);
+      border-radius: 50%;
+      opacity: .15;
+    }
+
+    .about-features {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .feature-row {
+      display: flex;
+      align-items: flex-start;
+      gap: .9rem;
+    }
+
+    .feature-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--green), var(--green-lt));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(46,125,50,.3);
+    }
+
+    .feature-row h4 { font-size: 1rem; font-weight: 800; color: var(--ginger-dk); margin-bottom: .2rem; }
+    .feature-row p  { font-size: .9rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── PRODUCTS ── */
+    .products {
+      padding: 6rem 1.5rem;
+      background: var(--icing);
+    }
+
+    .products-inner { max-width: 1200px; margin: 0 auto; }
+
+    .products-head {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .products-head .section-sub { margin: 0 auto; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(92,46,8,.1);
+      transition: transform .3s, box-shadow .3s;
+      cursor: pointer;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px) rotate(-.5deg);
+      box-shadow: 0 16px 40px rgba(92,46,8,.18);
+    }
+
+    .card-img {
+      width: 100%;
+      aspect-ratio: 5/4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      background: linear-gradient(135deg, #F5DEB3, #D2A679);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,.08));
+    }
+
+    .card-body { padding: 1.4rem; }
+
+    .card-tag {
+      display: inline-block;
+      background: #FFF3E0;
+      color: var(--ginger);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .25rem .7rem;
+      border-radius: 50px;
+      margin-bottom: .7rem;
+    }
+
+    .card-body h3 {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.2rem;
+      color: var(--ginger-dk);
+      margin-bottom: .4rem;
+    }
+
+    .card-body p {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+
+    .card-footer-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .card-price {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--ginger-dk);
+    }
+
+    .card-price span { font-size: .85rem; color: var(--muted); font-weight: 600; }
+
+    .btn-add {
+      background: var(--ginger);
+      color: #fff;
+      border: none;
+      padding: .5rem 1.1rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: .85rem;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+
+    .btn-add:hover { background: var(--ginger-dk); transform: scale(1.06); }
+
+    /* ── PROCESS ── */
+    .process {
+      padding: 6rem 1.5rem;
+      background: linear-gradient(160deg, var(--ginger-dk) 0%, var(--ginger) 100%);
+      color: var(--cream);
+      overflow: hidden;
+    }
+
+    .process-inner { max-width: 1200px; margin: 0 auto; }
+
+    .process-head { text-align: center; margin-bottom: 3.5rem; }
+    .process-head .section-title { color: var(--cream); }
+    .process-head .section-sub   { color: #ffe0c8; margin: 0 auto; }
+    .process-head .section-label { color: #FFD54F; }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 2rem;
+      position: relative;
+    }
+
+    .step-card {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform .3s, background .3s;
+    }
+
+    .step-card:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,.17);
+    }
+
+    .step-number {
+      font-family: 'Pacifico', cursive;
+      font-size: 3rem;
+      color: rgba(255,255,255,.18);
+      line-height: 1;
+      margin-bottom: .3rem;
+    }
+
+    .step-icon {
+      font-size: 2.2rem;
+      margin-bottom: .8rem;
+    }
+
+    .step-card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: .5rem; }
+    .step-card p  { font-size: .88rem; color: #ffe0c8; line-height: 1.55; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 6rem 1.5rem;
+      background: var(--cream);
+    }
+
+    .testimonials-inner { max-width: 1200px; margin: 0 auto; }
+    .testi-head { text-align: center; margin-bottom: 3.5rem; }
+    .testi-head .section-sub { margin: 0 auto; }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .testi-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(92,46,8,.09);
+      position: relative;
+      transition: transform .3s;
+    }
+
+    .testi-card:hover { transform: translateY(-5px); }
+
+    .testi-card::before {
+      content: '\201C';
+      font-family: 'Pacifico', cursive;
+      font-size: 5rem;
+      color: var(--ginger-lt);
+      opacity: .25;
+      position: absolute;
+      top: 0; left: 1.2rem;
+      line-height: 1;
+    }
+
+    .stars { color: #FFB300; font-size: .9rem; margin-bottom: .8rem; }
+
+    .testi-card p {
+      font-family: 'Lora', serif;
+      font-style: italic;
+      font-size: .95rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: .8rem;
+    }
+
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--ginger-lt), var(--ginger-dk));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .author-name { font-weight: 800; font-size: .95rem; color: var(--ginger-dk); }
+    .author-role { font-size: .78rem; color: var(--muted); }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--purple) 0%, var(--red) 60%, var(--ginger) 100%);
+      padding: 5rem 1.5rem;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .cta-banner::before {
+      content: '🍪';
+      position: absolute;
+      font-size: 14rem;
+      opacity: .06;
+      top: -2rem;
+      left: -2rem;
+      transform: rotate(-20deg);
+    }
+
+    .cta-banner::after {
+      content: '🎄';
+      position: absolute;
+      font-size: 10rem;
+      opacity: .07;
+      bottom: -1rem;
+      right: 2rem;
+      transform: rotate(10deg);
+    }
+
+    .cta-banner h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .cta-banner p {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      opacity: .9;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .btn-white {
+      background: #fff;
+      color: var(--ginger-dk);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: .85rem 2.2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform .25s, box-shadow .25s;
+      box-shadow: 0 6px 24px rgba(0,0,0,.2);
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .btn-white:hover { transform: translateY(-3px); box-shadow: 0 10px 32px rgba(0,0,0,.28); }
+
+    .btn-outline-white {
+      background: transparent;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: .85rem 2.2rem;
+      border-radius: 50px;
+      border: 2px solid rgba(255,255,255,.6);
+      text-decoration: none;
+      transition: background .25s;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .btn-outline-white:hover { background: rgba(255,255,255,.15); }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 6rem 1.5rem;
+      background: var(--icing);
+    }
+
+    .contact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      color: var(--ginger-dk);
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      font-family: 'Lora', serif;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: .9rem;
+      font-size: .95rem;
+      color: var(--text);
+    }
+
+    .contact-list .icon-wrap {
+      width: 40px; height: 40px;
+      background: var(--ginger);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: .9rem;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      background: #fff;
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-form h3 {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.4rem;
+      color: var(--ginger-dk);
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--text);
+      margin-bottom: .4rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: .75rem 1rem;
+      border: 2px solid #E8D5C4;
+      border-radius: 12px;
+      font-family: 'Nunito', sans-serif;
+      font-size: .95rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color .25s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--ginger); }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--ginger);
+      color: #fff;
+      border: none;
+      padding: 1rem;
+      border-radius: 14px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background .25s, transform .2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+    }
+
+    .btn-submit:hover { background: var(--ginger-dk); transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      color: var(--icing);
+      padding: 4rem 1.5rem 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand .logo-text {
+      font-family: 'Pacifico', cursive;
+      font-size: 1.6rem;
+      color: #FFD54F;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .8rem;
+    }
+
+    .footer-brand p {
+      font-family: 'Lora', serif;
+      font-size: .9rem;
+      color: rgba(255,255,255,.55);
+      line-height: 1.65;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: .7rem;
+    }
+
+    .social-links a {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--icing);
+      font-size: .95rem;
+      text-decoration: none;
+      transition: background .25s, transform .2s;
+    }
+
+    .social-links a:hover { background: var(--ginger); transform: translateY(-3px); }
+
+    .footer-col h4 {
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #FFD54F;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+
+    .footer-col ul a {
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      font-size: .88rem;
+      transition: color .2s;
+    }
+
+    .footer-col ul a:hover { color: var(--cream); }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .footer-bottom p { font-size: .82rem; color: rgba(255,255,255,.4); }
+
+    .legal-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .legal-links a {
+      color: rgba(255,255,255,.4);
+      text-decoration: none;
+      font-size: .82rem;
+      transition: color .2s;
+    }
+
+    .legal-links a:hover { color: var(--cream); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-14px); }
+    }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(0deg); }
+      25%       { transform: rotate(-10deg); }
+      75%       { transform: rotate(10deg); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-up { opacity: 0; animation: fadeUp .7s forwards; }
+    .d1 { animation-delay: .1s; }
+    .d2 { animation-delay: .25s; }
+    .d3 { animation-delay: .4s; }
+    .d4 { animation-delay: .55s; }
+    .d5 { animation-delay: .7s; }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── MOBILE MENU ── */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        inset: 64px 0 auto 0;
+        background: var(--ginger-dk);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(0,0,0,.3);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .hero-inner { grid-template-columns: 1fr; text-align: center; padding-top: 3rem; }
+      .hero-text .section-sub, .hero-desc { margin: 0 auto 1.5rem; }
+      .hero-btns { justify-content: center; }
+      .hero-illustration { order: -1; }
+
+      .about-inner    { grid-template-columns: 1fr; }
+      .contact-inner  { grid-template-columns: 1fr; }
+      .footer-top     { grid-template-columns: 1fr 1fr; }
+      .form-row       { grid-template-columns: 1fr; }
+
+      .footer-top { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .footer-top     { grid-template-columns: 1fr; }
+      .footer-bottom  { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <nav id="top">
+    <div class="nav-inner">
+      <a href="#top" class="nav-logo">
+        <span class="cookie-icon">🍪</span>
+        Galletas del Duende
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#opiniones">Opiniones</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#contacto" class="nav-cta"><i class="fa-solid fa-bag-shopping"></i> Pedir ahora</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="hero">
+    <div class="hero-bg-circles">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-badge fade-up d1">
+          <i class="fa-solid fa-star"></i> Repostería Artesanal Navideña
+        </div>
+        <h1 class="hero-title fade-up d2">
+          Galletas hechas con <span class="accent">magia</span> y jengibre
+        </h1>
+        <p class="hero-desc fade-up d3">
+          Cada galleta es una historia de amor horneada a mano. Tradición,
+          sabor auténtico y decoraciones únicas que hacen de tu navidad
+          un momento inolvidable.
+        </p>
+        <div class="hero-btns fade-up d4">
+          <a href="#productos" class="btn-primary">
+            <i class="fa-solid fa-cookie-bite"></i> Ver Galería
+          </a>
+          <a href="#proceso" class="btn-ghost">
+            <i class="fa-solid fa-play-circle"></i> Cómo hacemos
+          </a>
+        </div>
+      </div>
+      <div class="hero-illustration fade-up d5">
+        <!-- SVG Gingerbread Man fiel a la imagen -->
+        <svg viewBox="0 0 320 420" xmlns="http://www.w3.org/2000/svg">
+          <!-- Shadow -->
+          <ellipse cx="160" cy="415" rx="80" ry="10" fill="rgba(0,0,0,.2)"/>
+
+          <!-- Body -->
+          <circle cx="160" cy="185" r="72" fill="#8B4513"/>
+          <!-- Head circle -->
+          <circle cx="160" cy="100" r="54" fill="#8B4513"/>
+
+          <!-- Arms -->
+          <ellipse cx="65" cy="195" rx="38" ry="26" fill="#8B4513" transform="rotate(-20 65 195)"/>
+          <ellipse cx="255" cy="195" rx="38" ry="26" fill="#8B4513" transform="rotate(20 255 195)"/>
+
+          <!-- Legs -->
+          <ellipse cx="127" cy="300" rx="34" ry="56" fill="#8B4513"/>
+          <ellipse cx="193" cy="300" rx="34" ry="56" fill="#8B4513"/>
+
+          <!-- Green icing wavy on arms -->
+          <path d="M42 205 Q55 195 68 205 Q81 215 94 205" stroke="#2E7D32" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M226 205 Q239 195 252 205 Q265 215 278 205" stroke="#2E7D32" stroke-width="6" fill="none" stroke-linecap="round"/>
+
+          <!-- Green icing on feet -->
+          <path d="M98 340 Q110 330 122 340 Q134 350 146 340" stroke="#2E7D32" stroke-width="7" fill="none" stroke-linecap="round"/>
+          <path d="M174 340 Q186 330 198 340 Q210 350 222 340" stroke="#2E7D32" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+          <!-- Santa Hat base (white trim) -->
+          <ellipse cx="160" cy="55" rx="62" ry="16" fill="#CFD8DC"/>
+          <!-- Hat body red -->
+          <path d="M115 55 Q120 10 160 0 Q200 10 205 55 Z" fill="#C62828"/>
+          <!-- Hat pompom -->
+          <circle cx="160" cy="6" r="12" fill="#CFD8DC"/>
+
+          <!-- Eyes (googly blue) -->
+          <circle cx="142" cy="95" r="14" fill="#ECEFF1"/>
+          <circle cx="178" cy="95" r="14" fill="#ECEFF1"/>
+          <circle cx="145" cy="97" r="7" fill="#1565C0"/>
+          <circle cx="181" cy="97" r="7" fill="#1565C0"/>
+          <circle cx="147" cy="94" r="2.5" fill="#fff"/>
+          <circle cx="183" cy="94" r="2.5" fill="#fff"/>
+
+          <!-- Rosy cheeks -->
+          <circle cx="125" cy="112" r="10" fill="#EF9A9A" opacity=".65"/>
+          <circle cx="195" cy="112" r="10" fill="#EF9A9A" opacity=".65"/>
+
+          <!-- Smile -->
+          <path d="M145 120 Q160 133 175 120" stroke="#5C2E08" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+          <!-- Red bow tie -->
+          <path d="M135 180 L160 192 L135 204 Z" fill="#C62828"/>
+          <path d="M185 180 L160 192 L185 204 Z" fill="#C62828"/>
+          <circle cx="160" cy="192" r="9" fill="#E53935"/>
+
+          <!-- Purple buttons -->
+          <circle cx="160" cy="222" r="11" fill="#6A1B9A"/>
+          <circle cx="160" cy="222" r="7" fill="#9C27B0" opacity=".5"/>
+          <circle cx="160" cy="250" r="11" fill="#4A148C"/>
+          <circle cx="160" cy="250" r="7" fill="#7B1FA2" opacity=".5"/>
+
+          <!-- Body outline -->
+          <circle cx="160" cy="100" r="54" fill="none" stroke="#5C2E08" stroke-width="3"/>
+          <circle cx="160" cy="185" r="72" fill="none" stroke="#5C2E08" stroke-width="3"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ STATS STRIP ══════════════ -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <strong>+5.000</strong>
+        <span>Galletas horneadas</span>
+      </div>
+      <div class="stat-item reveal">
+        <strong>12</strong>
+        <span>Años de tradición</span>
+      </div>
+      <div class="stat-item reveal">
+        <strong>100%</strong>
+        <span>Ingredientes naturales</span>
+      </div>
+      <div class="stat-item reveal">
+        <strong>98%</strong>
+        <span>Clientes felices</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ABOUT ══════════════ -->
+  <section class="about" id="nosotros">
+    <div class="about-inner">
+      <div class="about-image reveal">
+        <div class="img-placeholder">
+          <span>🏠</span>
+          <p>Foto de nuestra panadería</p>
+        </div>
+        <div class="about-deco"></div>
+      </div>
+      <div class="reveal">
+        <span class="section-label"><i class="fa-solid fa-leaf"></i> Nuestra historia</span>
+        <h2 class="section-title">Amor horneado desde el corazón</h2>
+        <p class="section-sub">
+          Somos una panadería artesanal familiar con más de 12 años creando
+          galletas de jengibre decoradas a mano. Cada pieza es única,
+          elaborada con recetas tradicionales transmitidas de generación en generación.
+        </p>
+        <div class="about-features">
+          <div class="feature-row reveal">
+            <div class="feature-icon"><i class="fa-solid fa-seedling"></i></div>
+            <div>
+              <h4>Ingredientes naturales</h4>
+              <p>Sin conservantes, sin artificiales. Solo jengibre, canela, miel y amor.</p>
+            </div>
+          </div>
+          <div class="feature-row reveal">
+            <div class="feature-icon"><i class="fa-solid fa-hand-sparkles"></i></div>
+            <div>
+              <h4>Decoración a mano</h4>
+              <p>Cada detalle es pintado uno a uno por nuestros artesanos.</p>
+            </div>
+          </div>
+          <div class="feature-row reveal">
+            <div class="feature-icon"><i class="fa-solid fa-box-open"></i></div>
+            <div>
+              <h4>Empaque personalizado</h4>
+              <p>Cajas temáticas y bolsas con tu mensaje especial incluido.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PRODUCTS ══════════════ -->
+  <section class="products" id="productos">
+    <div class="products-inner">
+      <div class="products-head reveal">
+        <span class="section-label"><i class="fa-solid fa-cookie"></i> Nuestros productos</span>
+        <h2 class="section-title">Galletas para cada ocasión</h2>
+        <p class="section-sub">
+          Desde el clásico muñeco de jengibre hasta sets temáticos navideños.
+          Personalizamos cualquier diseño para tu evento especial.
+        </p>
+      </div>
+      <div class="cards-grid">
+
+        <div class="product-card reveal">
+          <div class="card-img">🧑‍🍳</div>
+          <div class="card-body">
+            <span class="card-tag">⭐ Clásico</span>
+            <h3>Duende de Jengibre</h3>
+            <p>El clásico navideño con sombrero, moño y botones de azúcar. Disponible en 3 tamaños.</p>
+            <div class="card-footer-row">
+              <div class="card-price">$8.500 <span>/ und</span></div>
+              <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="card-img">🎄</div>
+          <div class="card-body">
+            <span class="card-tag">🎄 Navidad</span>
+            <h3>Set Árbol Navideño</h3>
+            <p>Set de 6 galletas en forma de árbol con glaseado verde y estrella dorada.</p>
+            <div class="card-footer-row">
+              <div class="card-price">$38.000 <span>/ set</span></div>
+              <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="card-img">❄️</div>
+          <div class="card-body">
+            <span class="card-tag">✨ Especial</span>
+            <h3>Copo de Nieve</h3>
+            <p>Galletas con intrincados diseños de copo de nieve en glaseado blanco perla.</p>
+            <div class="card-footer-row">
+              <div class="card-price">$12.000 <span>/ und</span></div>
+              <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="card-img">🎁</div>
+          <div class="card-body">
+            <span class="card-tag">🎁 Regalo</span>
+            <h3>Caja Premium</h3>
+            <p>Caja de regalo con 12 galletas surtidas, empaque especial y tarjeta personalizada.</p>
+            <div class="card-footer-row">
+              <div class="card-price">$65.000 <span>/ caja</span></div>
+              <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="card-img">🏡</div>
+          <div class="card-body">
+            <span class="card-tag">🏠 Kit</span>
+            <h3>Casa de Jengibre</h3>
+            <p>Kit para armar tu propia casita de jengibre. Perfecto para niños y toda la familia.</p>
+            <div class="card-footer-row">
+              <div class="card-price">$45.000 <span>/ kit</span></div>
+              <button class="btn-add"><i class="fa-solid fa-plus"></i> Agregar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card reveal">
+          <div class="card-img">🎨</div>
+          <div class="card-body">
+            <span class="card-tag">💜 Custom</span>
+            <h3>Diseño Personalizado</h3>
+            <p>¿Tienes una idea especial? Creamos cualquier figura con tu diseño y colores.</p>
+            <div class="card-footer-row">
+              <div class="card-price">Desde $15.000</div>
+              <button class="btn-add"><i class="fa-solid fa-pencil"></i> Consultar</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PROCESS ══════════════ -->
+  <section class="process" id="proceso">
+    <div class="process-inner">
+      <div class="process-head reveal">
+        <span class="section-label"><i class="fa-solid fa-wand-magic-sparkles"></i> Nuestro secreto</span>
+        <h2 class="section-title">Del horno a tu mesa</h2>
+        <p class="section-sub">Cada galleta pasa por un proceso cuidadoso que garantiza sabor, textura y belleza.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-number">01</div>
+          <div class="step-icon">🌾</div>
+          <h3>Ingredientes selectos</h3>
+          <p>Seleccionamos jengibre fresco, canela de Ceilán, miel pura y mantequilla premium.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">02</div>
+          <div class="step-icon">🥣</div>
+          <h3>Mezcla artesanal</h3>
+          <p>La masa es preparada a mano siguiendo recetas de más de tres generaciones.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">03</div>
+          <div class="step-icon">🔥</div>
+          <h3>Horneado perfecto</h3>
+          <p>Controlamos temperatura y tiempo al milímetro para lograr la textura ideal.</p>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-number">04</div>
+          <div class="step-icon">🎨</div>
+          <h3>Decoración a mano</h3>
+          <p>Artesanos expertos pintan cada detalle con glaseado natural de colores vibrantes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ TESTIMONIALS ══════════════ -->
+  <section class="testimonials" id="opiniones">
+    <div class="testimonials-inner">
+      <div class="testi-head reveal">
+        <span class="section-label"><i class="fa-solid fa-heart"></i> Lo que dicen</span>
+        <h2 class="section-title">Clientes que nos adoran</h2>
+        <p class="section-sub">Más de 5.000 familias han elegido nuestras galletas para sus momentos especiales.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>Las galletas de jengibre llegaron perfectas para la fiesta de mi hija. Todos quedaron fascinados con la decoración. ¡Son preciosas y deliciosas!</p>
+          <div class="testi-author">
+            <div class="author-avatar">M</div>
+            <div>
+              <div class="author-name">María González</div>
+              <div class="author-role">Medellín · Cliente desde 2021</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>Pedimos la caja premium como regalo corporativo y nuestros clientes se enamoraron. El empaque es tan elegante que da pena abrirlo.</p>
+          <div class="testi-author">
+            <div class="author-avatar">C</div>
+            <div>
+              <div class="author-name">Carlos Restrepo</div>
+              <div class="author-role">Bogotá · Empresa cliente</div>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>El kit de la casita de jengibre fue lo mejor de nuestra navidad. Los niños pasaron horas armándola y la disfrutamos todos juntos.</p>
+          <div class="testi-author">
+            <div class="author-avatar">L</div>
+            <div>
+              <div class="author-name">Laura Martínez</div>
+              <div class="author-role">Cali · Mamá de 3</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ CTA BANNER ══════════════ -->
+  <section class="cta-banner">
+    <h2>🎄 ¡Esta navidad regala sabor y magia!</h2>
+    <p>Pedidos personalizados con entrega a todo el país. Últimas unidades disponibles.</p>
+    <div class="cta-btns">
+      <a href="#contacto" class="btn-white">
+        <i class="fa-solid fa-gift"></i> Hacer mi pedido
+      </a>
+      <a href="https://wa.me/573001234567" class="btn-outline-white" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp directo
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════ CONTACT ══════════════ -->
+  <section class="contact" id="contacto">
+    <div class="contact-inner">
+      <div class="reveal">
+        <span class="section-label"><i class="fa-solid fa-envelope"></i> Contáctanos</span>
+        <h2 class="contact-info" style="font-family:'Pacifico',cursive;font-size:2.2rem;color:var(--ginger-dk);margin-bottom:.8rem;">¿Listos para pedir?</h2>
+        <p class="contact-info" style="font-family:'Lora',serif;color:var(--muted);line-height:1.7;margin-bottom:2rem;">
+          Escríbenos para personalizar tu pedido. Respondemos en menos de 2 horas
+          durante días hábiles. ¡Recibimos pedidos con mínimo 3 días de anticipación!
+        </p>
+        <ul class="contact-list">
+          <li>
+            <div class="icon-wrap"><i class="fa-solid fa-phone"></i></div>
+            <span>+57 300 123 4567</span>
+          </li>
+          <li>
+            <div class="icon-wrap"><i class="fa-solid fa-envelope"></i></div>
+            <span>hola@galletasdelduende.co</span>
+          </li>
+          <li>
+            <div class="icon-wrap"><i class="fa-solid fa-location-dot"></i></div>
+            <span>Calle 45 #12-34, Bucaramanga, Colombia</span>
+          </li>
+          <li>
+            <div class="icon-wrap"><i class="fa-solid fa-clock"></i></div>
+            <span>Lunes–Viernes: 8am – 6pm · Sábados: 9am – 2pm</span>
+          </li>
+        </ul>
+      </div>
+      <div class="contact-form reveal">
+        <h3>Envíanos tu pedido 🍪</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" placeholder="Tu nombre"/>
+          </div>
+          <div class="form-group">
+            <label for="tel">Teléfono</label>
+            <input type="tel" id="tel" placeholder="+57 300..."/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" placeholder="correo@ejemplo.com"/>
+        </div>
+        <div class="form-group">
+          <label for="producto">Producto de interés</label>
+          <select id="producto">
+            <option value="">Selecciona un producto...</option>
+            <option>Duende de Jengibre</option>
+            <option>Set Árbol Navideño</option>
+            <option>Copo de Nieve</option>
+            <option>Caja Premium</option>
+            <option>Casa de Jengibre</option>
+            <option>Diseño Personalizado</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="mensaje">Mensaje / Detalles del pedido</label>
+          <textarea id="mensaje" placeholder="Cuéntanos cuántas unidades, fecha de entrega, colores preferidos..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="handleSubmit(event)">
+          <i class="fa-solid fa-paper-plane"></i> Enviar pedido
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-text">🍪 Galletas del Duende</div>
+          <p>Repostería artesanal navideña elaborada con amor, tradición y los mejores ingredientes naturales de Colombia.</p>
+          <div class="social-links">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="#" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Productos</h4>
+          <ul>
+            <li><a href="#productos">Galletas clásicas</a></li>
+            <li><a href="#productos">Sets navideños</a></li>
+            <li><a href="#productos">Cajas de regalo</a></li>
+            <li><a href="#productos">Personalizados</a></li>
+            <li><a href="#productos">Casa de jengibre</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Empresa</h4>
+          <ul>
+            <li><a href="#nosotros">Nuestra historia</a></li>
+            <li><a href="#proceso">El proceso</a></li>
+            <li><a href="#opiniones">Testimonios</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="#">Blog de recetas</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Información</h4>
+          <ul>
+            <li><a href="#">Envíos y entregas</a></li>
+            <li><a href="#">Política de cambios</a></li>
+            <li><a href="#">Pedidos mayoristas</a></li>
+            <li><a href="#">Trabaja con nosotros</a></li>
+            <li><a href="#">Prensa</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider"/>
+      <div class="footer-bottom">
+        <p>© 2024 Galletas del Duende · Hecho con ❤️ en Colombia</p>
+        <div class="legal-links">
+          <a href="#">Privacidad</a>
+          <a href="#">Términos</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (i % 4) * 0.12 + 's';
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Pedido enviado!';
+      btn.style.background = 'var(--green)';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Enviar pedido';
+        btn.style.background = '';
+      }, 3000);
+    }
+
+    // Smooth nav active state
+    const sections = document.querySelectorAll('section[id], div[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.querySelectorAll('a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    });
+  </script>
+</body>
+</html>
